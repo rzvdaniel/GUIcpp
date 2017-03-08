@@ -1,0 +1,423 @@
+#################################################################
+## This Makefile Exported by MinGW Developer Studio
+## Copyright (c) 2002-2004 by Parinya Thipchart
+#################################################################
+
+ifneq (,$(findstring Release, $(CFG)))
+  override CFG = Release
+else
+  override CFG = Debug
+endif
+
+PROJECT = guide
+CC = D:\Software\MinGWStudio\MinGW\bin\g++.exe
+
+ifeq ($(CFG),Debug)
+  OBJ_DIR = DebugGuide
+  OUTPUT_DIR = ../bin
+  TARGET = libguide.dll
+  C_INCLUDE_DIRS = -I"D:/DevelopDesk/Guide/trunk/mingw/../inc" -I"D:/DevelopDesk/Guide/trunk/mingw/../inc/sdl" 
+  C_PREPROC = -D__WIN32__ -D__GNUC__ 
+  CFLAGS = -pipe  -w -g2 -O0 -frtti -fexceptions 
+  RC_INCLUDE_DIRS = 
+  RC_PREPROC = 
+  RCFLAGS = 
+  LIB_DIRS = -L"D:/DevelopDesk/Guide/trunk/mingw/../lib" -L"D:/DevelopDesk/Guide/trunk/mingw/../bin" 
+  LIBS = -lopengl32 -lglu32 -lSDL -lSDLmain 
+  LDFLAGS = -pipe -shared -Wl,--output-def,$(OBJ_DIR)\guide.def,--out-implib,$(OBJ_DIR)\libguide.dll.a 
+endif
+
+ifeq ($(CFG),Release)
+  OBJ_DIR = ReleaseGuide
+  OUTPUT_DIR = ../bin
+  TARGET = libguide.dll
+  C_INCLUDE_DIRS = -I"D:/DevelopDesk/Guide/trunk/mingw/../inc" -I"D:/DevelopDesk/Guide/trunk/mingw/../inc/sdl" 
+  C_PREPROC = -D__WIN32__ -D__GNUC__ 
+  CFLAGS = -pipe  -w -g0 -O2 -frtti -fexceptions 
+  RC_INCLUDE_DIRS = 
+  RC_PREPROC = 
+  RCFLAGS = 
+  LIB_DIRS = -L"D:/DevelopDesk/Guide/trunk/mingw/../lib" -L"D:/DevelopDesk/Guide/trunk/mingw/../bin" 
+  LIBS = -lopengl32 -lglu32 -lSDL -lSDLmain 
+  LDFLAGS = -pipe -shared -Wl,--output-def,$(OBJ_DIR)\guide.def,--out-implib,$(OBJ_DIR)\libguide.dll.a -s 
+endif
+
+ifeq ($(OS),Windows_NT)
+  NULL =
+else
+  NULL = nul
+endif
+
+SRC_OBJS = \
+  $(OBJ_DIR)/bitbtn.o	\
+  $(OBJ_DIR)/bmp.o	\
+  $(OBJ_DIR)/brush.o	\
+  $(OBJ_DIR)/button.o	\
+  $(OBJ_DIR)/callback.o	\
+  $(OBJ_DIR)/canvas.o	\
+  $(OBJ_DIR)/captionbar.o	\
+  $(OBJ_DIR)/checkbtn.o	\
+  $(OBJ_DIR)/collection.o	\
+  $(OBJ_DIR)/combobox.o	\
+  $(OBJ_DIR)/component.o	\
+  $(OBJ_DIR)/control.o	\
+  $(OBJ_DIR)/custombutton.o	\
+  $(OBJ_DIR)/customedit.o	\
+  $(OBJ_DIR)/customlistbox.o	\
+  $(OBJ_DIR)/debug.o	\
+  $(OBJ_DIR)/directorylistbox.o	\
+  $(OBJ_DIR)/dll.o	\
+  $(OBJ_DIR)/drivecombobox.o	\
+  $(OBJ_DIR)/edit.o	\
+  $(OBJ_DIR)/entry.o	\
+  $(OBJ_DIR)/filelistbox.o	\
+  $(OBJ_DIR)/fileserver.o	\
+  $(OBJ_DIR)/filtercombobox.o	\
+  $(OBJ_DIR)/font.o	\
+  $(OBJ_DIR)/form.o	\
+  $(OBJ_DIR)/gfxserver.o	\
+  $(OBJ_DIR)/glserver.o	\
+  $(OBJ_DIR)/grid.o	\
+  $(OBJ_DIR)/gridcell.o	\
+  $(OBJ_DIR)/gridrow.o	\
+  $(OBJ_DIR)/group.o	\
+  $(OBJ_DIR)/groupbox.o	\
+  $(OBJ_DIR)/image.o	\
+  $(OBJ_DIR)/label.o	\
+  $(OBJ_DIR)/listbox.o	\
+  $(OBJ_DIR)/mathlib.o	\
+  $(OBJ_DIR)/menu.o	\
+  $(OBJ_DIR)/menumain.o	\
+  $(OBJ_DIR)/menupopup.o	\
+  $(OBJ_DIR)/mousecursor.o	\
+  $(OBJ_DIR)/object.o	\
+  $(OBJ_DIR)/opendialog.o	\
+  $(OBJ_DIR)/panel.o	\
+  $(OBJ_DIR)/pen.o	\
+  $(OBJ_DIR)/picture.o	\
+  $(OBJ_DIR)/radiobtn.o	\
+  $(OBJ_DIR)/screen.o	\
+  $(OBJ_DIR)/screenembeded.o	\
+  $(OBJ_DIR)/screenindependent.o	\
+  $(OBJ_DIR)/screenlinux.o	\
+  $(OBJ_DIR)/screenmacosx.o	\
+  $(OBJ_DIR)/screenwindows.o	\
+  $(OBJ_DIR)/scrollbar.o	\
+  $(OBJ_DIR)/scrollwinctrl.o	\
+  $(OBJ_DIR)/sdlkey.o	\
+  $(OBJ_DIR)/shadow.o	\
+  $(OBJ_DIR)/skin.o	\
+  $(OBJ_DIR)/strings.o	\
+  $(OBJ_DIR)/texture.o	\
+  $(OBJ_DIR)/tga.o	\
+  $(OBJ_DIR)/tinystr.o	\
+  $(OBJ_DIR)/tinyxml.o	\
+  $(OBJ_DIR)/tinyxmlerror.o	\
+  $(OBJ_DIR)/tinyxmlparser.o	\
+  $(OBJ_DIR)/wincontrol.o	\
+  $(OBJ_DIR)/string.o
+
+define build_target
+@echo Linking...
+@$(CC) -o "$(OUTPUT_DIR)\$(TARGET)" $(SRC_OBJS) $(LIB_DIRS) $(LIBS) $(LDFLAGS)
+endef
+
+define compile_source
+@echo Compiling $<
+@$(CC) $(CFLAGS) $(C_PREPROC) $(C_INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+.PHONY: print_header directories
+
+$(TARGET): print_header directories $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+cleanall:
+	@echo Deleting intermediate files for 'guide - $(CFG)'
+	-@del $(OBJ_DIR)\*.o
+	-@del "$(OUTPUT_DIR)\$(TARGET)"
+	-@del "$(OBJ_DIR)\$(PROJECT).def"
+	-@del "$(OBJ_DIR)\lib$(PROJECT).dll.a"
+	-@rmdir "$(OUTPUT_DIR)"
+
+clean:
+	@echo Deleting intermediate files for 'guide - $(CFG)'
+	-@del $(OBJ_DIR)\*.o
+
+print_header:
+	@echo ----------Configuration: guide - $(CFG)----------
+
+directories:
+	-@if not exist "$(OUTPUT_DIR)\$(NULL)" mkdir "$(OUTPUT_DIR)"
+	-@if not exist "$(OBJ_DIR)\$(NULL)" mkdir "$(OBJ_DIR)"
+
+$(OBJ_DIR)/bitbtn.o: ../src/guide/bitbtn.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/bmp.o: ../src/guide/bmp.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/brush.o: ../src/guide/brush.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/button.o: ../src/guide/button.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/callback.o: ../src/guide/callback.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/canvas.o: ../src/guide/canvas.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/captionbar.o: ../src/guide/captionbar.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/checkbtn.o: ../src/guide/checkbtn.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/collection.o: ../src/guide/collection.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/combobox.o: ../src/guide/combobox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/component.o: ../src/guide/component.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/control.o: ../src/guide/control.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/custombutton.o: ../src/guide/custombutton.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/customedit.o: ../src/guide/customedit.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/customlistbox.o: ../src/guide/customlistbox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/debug.o: ../src/guide/debug.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/directorylistbox.o: ../src/guide/directorylistbox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/dll.o: ../src/guide/dll.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/drivecombobox.o: ../src/guide/drivecombobox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/edit.o: ../src/guide/edit.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/entry.o: ../src/guide/entry.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/filelistbox.o: ../src/guide/filelistbox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/fileserver.o: ../src/guide/fileserver.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/filtercombobox.o: ../src/guide/filtercombobox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/font.o: ../src/guide/font.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/form.o: ../src/guide/form.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/gfxserver.o: ../src/guide/gfxserver.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/glserver.o: ../src/guide/glserver.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/grid.o: ../src/guide/grid.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/gridcell.o: ../src/guide/gridcell.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/gridrow.o: ../src/guide/gridrow.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/group.o: ../src/guide/group.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/groupbox.o: ../src/guide/groupbox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/image.o: ../src/guide/image.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/label.o: ../src/guide/label.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/listbox.o: ../src/guide/listbox.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/mathlib.o: ../src/guide/mathlib.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/menu.o: ../src/guide/menu.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/menumain.o: ../src/guide/menumain.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/menupopup.o: ../src/guide/menupopup.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/mousecursor.o: ../src/guide/mousecursor.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/object.o: ../src/guide/object.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/opendialog.o: ../src/guide/opendialog.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/panel.o: ../src/guide/panel.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/pen.o: ../src/guide/pen.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/picture.o: ../src/guide/picture.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/radiobtn.o: ../src/guide/radiobtn.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/screen.o: ../src/guide/screen.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/screenembeded.o: ../src/guide/screenembeded.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/screenindependent.o: ../src/guide/screenindependent.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/screenlinux.o: ../src/guide/screenlinux.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/screenmacosx.o: ../src/guide/screenmacosx.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/screenwindows.o: ../src/guide/screenwindows.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/scrollbar.o: ../src/guide/scrollbar.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/scrollwinctrl.o: ../src/guide/scrollwinctrl.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/sdlkey.o: ../src/guide/sdlkey.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/shadow.o: ../src/guide/shadow.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/skin.o: ../src/guide/skin.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/strings.o: ../src/guide/strings.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/texture.o: ../src/guide/texture.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/tga.o: ../src/guide/tga.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/tinystr.o: ../src/guide/tinystr.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/tinyxml.o: ../src/guide/tinyxml.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/tinyxmlerror.o: ../src/guide/tinyxmlerror.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/tinyxmlparser.o: ../src/guide/tinyxmlparser.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/wincontrol.o: ../src/guide/wincontrol.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/string.o: ../src/guide/string.cpp
+
+	$(compile_source)
+

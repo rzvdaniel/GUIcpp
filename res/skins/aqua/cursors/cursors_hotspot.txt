@@ -1,0 +1,13 @@
+size_vert	16, 16
+size_horz	16, 16
+resize_right	15, 16
+resize_left	16, 16
+resize_all	16, 16
+cursor		2,  2
+pen		3,  4
+help		6,  7
+hand		12, 8
+cross		15, 16
+beam		15, 15
+alternate	15, 5
+unavailable	15, 15

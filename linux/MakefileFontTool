@@ -1,0 +1,82 @@
+#################################################################
+## This Makefile Exported by MinGW Developer Studio
+## Copyright (c) 2005 by Parinya Thipchart
+#################################################################
+
+ifneq (,$(findstring Release, $(CFG)))
+  override CFG = Release
+else
+  override CFG = Debug
+endif
+
+PROJECT = fonttool
+CC = "/usr/bin/g++"
+
+ifeq ($(CFG),Debug)
+  OBJ_DIR = DebugFontTool
+  OUTPUT_DIR = ../bin
+  TARGET = fonttool
+  C_INCLUDE_DIRS = -I"../inc" 
+  C_PREPROC = -D__LINUX__ 
+  CFLAGS = -pipe  -w -g2 -O0 -frtti -fexceptions 
+  LIB_DIRS = -L"../bin" -L"../lib" 
+  LIBS = -lGL -lfreetype 
+  LDFLAGS = -pipe 
+endif
+
+ifeq ($(CFG),Release)
+  OBJ_DIR = ReleaseFontTool
+  OUTPUT_DIR = ../bin
+  TARGET = fonttool
+  C_INCLUDE_DIRS = -I"../inc" 
+  C_PREPROC = -D__LINUX__ 
+  CFLAGS = -pipe  -Wall -g0 -O2 -frtti -fexceptions 
+  LIB_DIRS = -L"../bin" -L"../lib" 
+  LIBS = 
+  LDFLAGS = -pipe -s 
+endif
+
+SRC_OBJS = \
+  $(OBJ_DIR)/Main.o
+
+
+define build_target
+@echo Linking...
+@$(CC) -o "$(OUTPUT_DIR)/$(TARGET)" $(SRC_OBJS) $(LIB_DIRS) $(LIBS) $(LDFLAGS)
+endef
+
+define compile_source
+@echo Compiling $<
+@$(CC) $(CFLAGS) $(C_PREPROC) $(C_INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+.PHONY: print_header directories
+
+$(TARGET): print_header directories $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+cleanall:
+	@echo Deleting intermediate files for 'fonttool - $(CFG)'
+	-@rm -rf "$(OBJ_DIR)"
+	-@rm -rf "$(OUTPUT_DIR)/$(TARGET)"
+	-@rmdir "$(OUTPUT_DIR)"
+
+clean:
+	@echo Deleting intermediate files for 'fonttool - $(CFG)'
+	-@rm -rf "$(OBJ_DIR)"
+
+print_header:
+	@echo ----------Configuration: fonttool - Linux $(CFG)----------
+
+directories:
+	-@if [ ! -d "$(OUTPUT_DIR)" ]; then mkdir "$(OUTPUT_DIR)"; fi
+	-@if [ ! -d "$(OBJ_DIR)" ]; then mkdir "$(OBJ_DIR)"; fi
+
+$(OBJ_DIR)/Main.o: ../src/fonttool/Main.cpp
+
+	$(compile_source)
+
+
+

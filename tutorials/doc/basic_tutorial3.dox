@@ -1,0 +1,390 @@
+//------------------------------------------------------------------------------
+/**
+	@page GUIdeBasicTutorial3 Tutorial3 - Render an OpenGL scene
+
+	Learn how to render an OpenGL scene using the surface of one 
+	of the guide controls (in this case, a panel). Also, you can 
+	see how you can work with standard events as OnMouseDown, OnMouseMove, 
+	OnMouseUp, OnKeyDown and OnKeyUp. 
+
+	Form1.h
+
+	@code
+	#ifndef T_FORM1_H
+	#define T_FORM1_H
+	//-------------------------------------------------------------------
+	//  CLASS
+	//  TForm1
+	//
+	//  (C) 2004 R.Predescu
+	//-------------------------------------------------------------------
+	#ifndef T_FORM_H
+	#include "guide/form.h"
+	#endif
+
+	class TPanel1;
+	class TButton;
+	class TForm1 : public TForm
+	{
+	    	/// Our 3D rendering area
+		TPanel1* Panel1;
+		/// Simple button
+		TButton* Ok;
+
+	public:  
+	    	TForm1();
+	    	virtual ~TForm1();
+		void Create(TComponent* AOwner, const TRect& Rect, bool HasCaption);
+	};
+	#endif 
+	@endcode
+
+	Form1.cpp
+
+	@code
+	//-------------------------------------------------------------------
+	//  Form1.cpp
+	//  (C) 2004 Ricas -- R.Predescu
+	//
+	//  Description:
+	//
+	//-------------------------------------------------------------------
+	#include "guide/vcl.h"
+	#include "guide/debug.h"
+	#include "Panel1.h"
+	#include "Form1.h"
+
+	//-------------------------------------------------------------------
+	//  TTutorial1()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm1::TForm1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  ~TForm1()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm1::~TForm1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  Create()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TForm1::Create(TComponent* AOwner, const TRect& Rect, bool HasCaption)
+	{
+		// First, call the base class Create() function
+		TForm::Create(AOwner, Rect, HasCaption);
+		
+		// Set the form's caption
+		SetCaption("Tutorial3");
+		// Set this form as main form
+		SetMain(true);
+		
+		// We are using this panel as a rendering area (see Panel1.cpp). It's
+		// nicer and safer to render into a child control and not directly
+		// on the form (but you can do this, if you want). You can insert
+		// OpenGL code in any control that responds to the OnPaint event.
+		Panel1 = new TPanel1;
+		Panel1->Create(this, TRect(10, 40, GetWidth() - 20, GetHeight() - 100));
+
+		// Create the Ok button
+		Ok = new TButton;
+		Ok->Create(this, TRect(GetWidth()/2 - 25, GetHeight() - 50, 50, 32));
+		Ok->SetCaption("Ok");
+		Ok->SetModalResult(mrOk);
+	}
+	@endcode
+	
+	Panel1.h
+	
+	@code
+	#ifndef T_PANEL1_H
+	#define T_PANEL1_H
+	//-------------------------------------------------------------------
+	//  CLASS
+	//  TPanel1
+	//
+	//  (C) 2004 R.Predescu
+	//-------------------------------------------------------------------
+	#ifndef T_PANEL_H
+	#include "guide/panel.h"
+	#endif
+
+	#ifdef WIN32
+	#include <windows.h>
+	#include <GL/gl.h>
+	#include <GL/glu.h>
+	#endif
+
+	class TPanel1 : public TPanel
+	{
+		int MouseX;
+		int MouseY;
+		float eye[3];
+		float rot[3];
+		GLUquadricObj *quadric;
+
+	public:  
+	    	TPanel1();
+	    	virtual ~TPanel1();
+		virtual void Create(TComponent* AOwner, const TRect& Rect);
+
+	protected:
+		// Events	
+		void OnPaint(void);
+		void OnMouseDown(TMouseButton Button, TShiftState Shift, int X, int Y);
+		void OnMouseUp(TMouseButton Button, TShiftState Shift, int X, int Y);
+		void OnMouseMove(TShiftState Shift, int X, int Y);	
+		void OnKeyDown(unsigned short &Key, TShiftState Shift);
+		void OnKeyUp(unsigned short &Key, TShiftState Shift);
+
+	private:
+		void Clamp(float v[3]);
+	};
+	#endif 
+	@endcode
+	
+	Panel1.cpp
+
+	@code
+	//-------------------------------------------------------------------
+	//  Panel1.cpp
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+	#include "guide/vcl.h"
+	#include "guide/debug.h"
+	#include "Panel1.h"
+
+	//-------------------------------------------------------------------
+	//  TPanel1()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	TPanel1::TPanel1()
+	{
+		MouseX = 0;
+		MouseY = 0;
+		eye[0] = 0;
+		eye[1] = 0;
+		eye[2] = 20;
+		rot[0] = 0;
+		rot[1] = -45;
+		rot[2] = 0;
+	}
+
+	//-------------------------------------------------------------------
+	//  ~TPanel1()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	TPanel1::~TPanel1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  Create()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::Create(TComponent* AOwner, const TRect& Rect)
+	{	
+		TPanel::Create(AOwner, Rect);
+		
+		quadric = gluNewQuadric();
+		gluQuadricNormals(quadric, GLU_SMOOTH); 
+		gluQuadricTexture(quadric, GL_TRUE);
+	}
+
+	//-------------------------------------------------------------------
+	//  OnPaint()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::OnPaint(void) 
+	{
+		// Call the base class function, first. 
+		TPanel::OnPaint();
+
+		// Begin the user scene. It is very important to render
+		// your OpenGL scene between Canvas's method BeginUserScene()
+		// and EndUserScene(). The application needs this to restore
+		// some OpenGL states required for 2D rendering, states 
+		// that could be alterred by your code. This is a must.
+		Canvas->BeginUserScene();
+
+		// User scene
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		gluPerspective( 45.0, (float)(GetWidth())/(float)(GetHeight()), 0.1f, 500.0 ); 
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glTranslatef (-eye[0], -eye[1], -eye[2]);
+		glRotatef(rot[0], 1.0f, 0.0f, 0.0f);
+		glRotatef(rot[1], 0.0f, 1.0f, 0.0f);
+	    	glRotatef(rot[2], 0.0f, 0.0f, 1.0f);
+								
+		glEnable(GL_LIGHTING);	
+		glEnable(GL_LIGHT0);	
+		glEnable(GL_DEPTH_TEST);
+
+		// Just a simple cylinder
+		gluCylinder(quadric, 4.0f, 4.0f, 4.0f, 16, 2);
+		
+		glDisable(GL_DEPTH_TEST);
+		glDisable(GL_LIGHTING);			
+		
+		// End the user scene
+		Canvas->EndUserScene();
+
+		// If the panel is the active control on it's parent form,
+		// render a red rect aroud it's borders to tell the user
+		// that his working panel can receive keyboard input.
+		if(GetActive() == true)
+			Canvas->Pen->SetColor(clRed);
+		else
+			Canvas->Pen->SetColor(clLtGray);
+
+		Canvas->DrawRect(2, 2, GetWidth() - 4, GetHeight() - 4, 1);
+	}
+
+	//-------------------------------------------------------------------
+	//  OnMouseDown()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::OnMouseDown(TMouseButton Button, TShiftState Shift, int X, int Y)
+	{
+	    TPanel::OnMouseDown(Button, Shift, X, Y);
+		
+	    // Capture the mouse movement even if outside of control
+		if(!GetCaptured())
+			SetCapture();
+
+		MouseX = X;
+		MouseY = Y;	
+	}
+
+	//-------------------------------------------------------------------
+	//  OnMouseUp()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::OnMouseUp(TMouseButton Button, TShiftState Shift, int X, int Y)
+	{
+	    TPanel::OnMouseUp(Button, Shift, X, Y);
+	    
+		if(GetCaptured())
+			ReleaseCapture();
+
+		MouseX = 0;
+		MouseY = 0;
+	}
+
+	//-------------------------------------------------------------------
+	//  OnMouseMove()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::OnMouseMove(TShiftState Shift, int X, int Y)
+	{
+	    TPanel::OnMouseMove(Shift, X, Y);
+	    
+		if(GetCaptured())
+		{
+			// If the SHIFT key is pressed, zoom it
+			if(Shift.count(ssShift))
+			{
+				// Zoom
+				eye[2] -= ((MouseY - Y) * 180.0f) / 200.0f;
+			}
+			else
+			{
+				// Rotate
+				rot[0] -= ((MouseY - Y) * 180.0f) / 200.0f;
+				rot[1] -= ((MouseX - X) * 180.0f) / 200.0f;
+				Clamp(rot);
+			}
+		}
+
+		MouseX = X;
+		MouseY = Y;
+	}
+
+	//-------------------------------------------------------------------
+	//  OnKeyDown()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::OnKeyDown(unsigned short &Key, TShiftState Shift)
+	{
+	    TPanel::OnKeyDown(Key, Shift);
+	    
+		if(Key == T_KEY_UP)
+			eye[1] -= 3.0f;	 // Translate up
+		else if(Key == T_KEY_DOWN)
+			eye[1] += 3.0f;  // Translate down
+		else if(Key == T_KEY_LEFT)
+			eye[0] += 2.0f;  // Translate left
+		else if(Key == T_KEY_RIGHT)
+			eye[0] -= 2.0f;  // Translate right
+	}
+
+	//-------------------------------------------------------------------
+	//  OnKeyUp()
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::OnKeyUp(unsigned short &Key, TShiftState Shift)
+	{
+		// This does nothing, but is here for you to see it exists.
+		TPanel::OnKeyUp(Key, Shift);
+	}
+
+	//-------------------------------------------------------------------
+	//  Clamp()
+	//  Clamp rotation angles
+	//  14-Aug-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TPanel1::Clamp(float v[3])
+	{    
+	    	for(int i = 0; i < 3; i ++)
+		{
+	        	if(v[i] > 360 || v[i] < -360)
+	            		v[i] = 0;
+		}
+	}	
+	@endcode
+
+	Main.cpp
+	
+	@code
+	//-------------------------------------------------------------------
+	//  Tutorial3
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+
+	#include "guide/screenindependent.h"
+	#include "guide/debug.h"
+	#include "Form1.h"
+
+	int main(void)
+	{
+		// Create the screen
+		// Enter the resolution, bithdepth, fullscreen (true - false) and
+		// the skin file standard control will use to set their appearance
+		TScreenIndependent* Screen = new TScreenIndependent;
+		Screen->Create(TRect(0, 0, 800, 600), 16, false, "../res/skins/aqua.xml");
+
+		// Create the tutorial's main form.
+		TForm1* Form1 = new TForm1;
+		Form1->Create(NULL, TRect(100, 50, 600, 500), true);
+		Form1->SetMain(true);
+		Form1->ShowModal();
+		
+		// Enter application loop
+		Screen->Run();
+		
+		// Clean up things
+		delete Screen;	
+
+		return 0;	
+	}
+	@endcode
+
+	@image html basic_tutorial3.jpg Tutorial screenshot
+*/

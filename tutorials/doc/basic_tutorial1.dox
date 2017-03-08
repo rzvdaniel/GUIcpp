@@ -1,0 +1,144 @@
+//------------------------------------------------------------------------------
+/**
+    @page GUIdeBasicTutorial1 Tutorial1 - Create a simple form
+
+	This tutorial presents you the modality you can create
+	standard buttons, placed on a form. Also you can see how
+	you can attach an OnClick() event to a standard control
+	(in this case, a simple button).
+
+	Our form is derrived from the base class TForm and contains 
+        a standard button. When user will click the button, the 
+	application will close.
+
+	@code
+	#ifndef T_FORM1_H
+	#define T_FORM1_H
+	//-------------------------------------------------------------------
+	//  CLASS
+	//  TForm1
+	//
+	//  (C) 2004 R.Predescu
+	//-------------------------------------------------------------------
+	#ifndef T_FORM_H
+	#include "guide/form.h"
+	#endif
+
+	class TButton;
+	class TForm1 : public TForm
+	{
+		// Simple button for our form.
+		TButton* Button1;
+
+	public:  
+	    	TForm1();
+	    	virtual ~TForm1();
+	    	void Create(TComponent* AOwner, const TRect& Rect, bool HasCaption);
+
+	protected:
+		// Events	
+		void OnButton1Click(void);
+	};
+
+	#endif
+	@endcode 
+
+	Here is the implementation of the TForm1 member functions. 
+
+	@code
+	//-------------------------------------------------------------------
+	//  Form1.cpp
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+	#include "guide/vcl.h"
+	#include "guide/debug.h"
+	#include "Form1.h"
+
+	//-------------------------------------------------------------------
+	//  TForm1()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm1::TForm1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  ~TForm1()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm1::~TForm1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  Create()
+	//  22-Dec-2003   rzv    created
+	//-------------------------------------------------------------------
+	void TForm1::Create(TComponent* AOwner, const TRect& Rect, bool HasCaption)
+	{
+		// First, call the base class Create() function
+		TForm::Create(AOwner, Rect, HasCaption);
+		
+		// Set the form's caption
+		SetCaption("Tutorial1");
+		
+		// Creates the button and place it at the bottom of our form
+		Button1 = new TButton;
+		Button1->Create(this, TRect(GetWidth()/2 - 30, GetHeight() - 50, 60, 32));
+		Button1->SetCaption("Close");
+		
+		// This will set the OnClick() event for the button to OnButton1Click() function.
+		Button1->FOnClick = makeFunctor((TNotifyEvent*)0,*this, &TForm1::OnButton1Click);
+	}
+
+	//-------------------------------------------------------------------
+	//  OnButton1Click()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TForm1::OnButton1Click(void)
+	{
+		// Close application
+		Screen->Close();
+	}
+
+	//-------------------------------------------------------------------
+	//  EOF
+	//-------------------------------------------------------------------
+  	@endcode
+
+	Application's main function is written in Main.cpp
+
+	@code
+	//-------------------------------------------------------------------
+	//  Tutorial1
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+
+	#include "guide/screenindependent.h"
+	#include "guide/debug.h"
+	#include "Form1.h"
+
+	int main(void)
+	{
+		// Create the screen
+		// Enter the resolution, bithdepth, fullscreen (true - false) and
+		// the skin file that standard controls will use to set their appearance
+		TScreenIndependent* Screen = new TScreenIndependent;
+		Screen->Create(TRect(0, 0, 800, 600), 16, false, "../res/skins/aqua.xml");
+
+		// Create the tutorial's main form.
+		TForm1* Form1 = new TForm1;
+		Form1->Create(NULL, TRect(100, 50, 600, 500), true);
+
+		// Enter application loop
+		Screen->Run();
+		
+		// Clean up things
+		delete Screen;	
+
+		return 0;	
+	}
+	@endcode
+
+	@image html basic_tutorial1.jpg Tutorial screenshot
+*/

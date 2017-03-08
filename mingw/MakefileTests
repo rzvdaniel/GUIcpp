@@ -1,0 +1,141 @@
+#################################################################
+## This Makefile Exported by MinGW Developer Studio
+## Copyright (c) 2002-2004 by Parinya Thipchart
+#################################################################
+
+ifneq (,$(findstring Release, $(CFG)))
+  override CFG = Release
+else
+  override CFG = Debug
+endif
+
+PROJECT = tests
+CC = D:\Software\MinGWStudio\MinGW\bin\g++.exe
+
+ifeq ($(CFG),Debug)
+  OBJ_DIR = DebugTests
+  OUTPUT_DIR = ../bin
+  TARGET = tests.exe
+  C_INCLUDE_DIRS = -I"D:/DevelopDesk/Guide/trunk/mingw/../inc" 
+  C_PREPROC = -D__WIN32__ -D__GNUC__ 
+  CFLAGS = -pipe  -w -g2 -O0 -frtti -fexceptions 
+  RC_INCLUDE_DIRS = 
+  RC_PREPROC = 
+  RCFLAGS = 
+  LIB_DIRS = -L"D:/DevelopDesk/Guide/trunk/mingw/../lib" -L"D:/DevelopDesk/Guide/trunk/mingw/../bin" 
+  LIBS = -lopengl32 -lglu32 -lSDL -lSDLmain -lguide.dll 
+  LDFLAGS = -pipe 
+endif
+
+ifeq ($(CFG),Release)
+  OBJ_DIR = ReleaseTests
+  OUTPUT_DIR = ../bin
+  TARGET = tests.exe
+  C_INCLUDE_DIRS = -I"D:/DevelopDesk/Guide/trunk/mingw/../inc" 
+  C_PREPROC = -D__WIN32__ -D__GNUC__ 
+  CFLAGS = -pipe  -w -g0 -O2 -frtti -fexceptions 
+  RC_INCLUDE_DIRS = 
+  RC_PREPROC = 
+  RCFLAGS = 
+  LIB_DIRS = -L"D:/DevelopDesk/Guide/trunk/mingw/../lib" -L"D:/DevelopDesk/Guide/trunk/mingw/../bin" 
+  LIBS = -lopengl32 -lglu32 -lSDL -lSDLmain -lguide.dll 
+  LDFLAGS = -pipe -s 
+endif
+
+ifeq ($(OS),Windows_NT)
+  NULL =
+else
+  NULL = nul
+endif
+
+SRC_OBJS = \
+  $(OBJ_DIR)/Main.o	\
+  $(OBJ_DIR)/Test1.o	\
+  $(OBJ_DIR)/Test2.o	\
+  $(OBJ_DIR)/Test3.o	\
+  $(OBJ_DIR)/Test4.o	\
+  $(OBJ_DIR)/Test5.o	\
+  $(OBJ_DIR)/Test6.o	\
+  $(OBJ_DIR)/Test7.o	\
+  $(OBJ_DIR)/TestDll.o	\
+  $(OBJ_DIR)/Test8.o	\
+  $(OBJ_DIR)/Test9.o
+
+define build_target
+@echo Linking...
+@$(CC) -o "$(OUTPUT_DIR)\$(TARGET)" $(SRC_OBJS) $(LIB_DIRS) $(LIBS) $(LDFLAGS)
+endef
+
+define compile_source
+@echo Compiling $<
+@$(CC) $(CFLAGS) $(C_PREPROC) $(C_INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+.PHONY: print_header directories
+
+$(TARGET): print_header directories $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+cleanall:
+	@echo Deleting intermediate files for 'tests - $(CFG)'
+	-@del $(OBJ_DIR)\*.o
+	-@del "$(OUTPUT_DIR)\$(TARGET)"
+	-@rmdir "$(OUTPUT_DIR)"
+
+clean:
+	@echo Deleting intermediate files for 'tests - $(CFG)'
+	-@del $(OBJ_DIR)\*.o
+
+print_header:
+	@echo ----------Configuration: tests - $(CFG)----------
+
+directories:
+	-@if not exist "$(OUTPUT_DIR)\$(NULL)" mkdir "$(OUTPUT_DIR)"
+	-@if not exist "$(OBJ_DIR)\$(NULL)" mkdir "$(OBJ_DIR)"
+
+$(OBJ_DIR)/Main.o: ../src/tests/Main.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test1.o: ../src/tests/Test1.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test2.o: ../src/tests/Test2.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test3.o: ../src/tests/Test3.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test4.o: ../src/tests/Test4.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test5.o: ../src/tests/Test5.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test6.o: ../src/tests/Test6.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test7.o: ../src/tests/Test7.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/TestDll.o: ../src/tests/TestDll.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test8.o: ../src/tests/Test8.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test9.o: ../src/tests/Test9.cpp
+
+	$(compile_source)
+

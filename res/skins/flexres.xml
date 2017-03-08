@@ -1,0 +1,66 @@
+<?xml version="1.0" standalone=no>
+
+<!-- Resources for aqua skin -->
+
+<!-- Textures -->
+<Textures>
+<Texture Name="button.tga" Num="12"/>
+<Texture Name="bitbtn.tga" Num="12"/>
+<Texture Name="check_button.tga" Num="4"/>
+<Texture Name="radio_button.tga" Num="4"/>
+<Texture Name="captionbar.tga" Num="6"/>
+<Texture Name="edit.tga" Num="6"/>
+<Texture Name="scrollbar.tga" Num="2"/>
+<Texture Name="scrollbar_button.tga" Num="8"/>
+<Texture Name="scrollbar_thumb_horizontal.tga" Num="6"/>
+<Texture Name="scrollbar_thumb_vertical.tga" Num="6"/>
+<Texture Name="shadow_top.tga" Num="3"/>
+<Texture Name="shadow_bottom.tga" Num="3"/>
+<Texture Name="shadow_left.tga" Num="3"/>
+<Texture Name="shadow_right.tga" Num="3"/>
+<Texture Name="menu_popup.tga" Num="1"/>
+<Texture Name="menu_popup_item.tga" Num="2"/>
+<Texture Name="menu_main.tga" Num="1"/>
+<Texture Name="menu_main_item.tga" Num="3"/>
+<Texture Name="comboboxbutton.tga" Num="4"/>
+<Texture Name="combobox.tga" Num="12"/>
+<Texture Name="listbox.tga" Num="1"/>
+<Texture Name="listbox_active.tga" Num="9"/>
+<Texture Name="listbox_inactive.tga" Num="9"/>
+</Textures>
+
+<!-- Icons -->
+
+<IconsSmall Size="16">
+  <Icon Name="cd.tga"/>
+  <Icon Name="drive.tga"/>
+  <Icon Name="file.tga"/>
+  <Icon Name="folder.tga"/>
+</IconsSmall>
+
+<IconsMedium Size="32">
+</IconsMedium>
+
+<IconsLarge Size="40">
+</IconsLarge>
+
+<!-- Cursors -->
+<Cursors>
+<Cursor Name="cursor.tga" HotSpot="2,2"/>
+<Cursor Name="beam.tga" HotSpot="15,15"/>
+</Cursors>
+
+<!-- Fonts -->
+<Fonts>
+<Font Name="LucidaGrande.font" Size="12"/>
+<Font Name="comic.font" Size="12"/>
+</Fonts>
+
+
+
+
+
+
+
+
+

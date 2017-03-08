@@ -1,0 +1,235 @@
+//------------------------------------------------------------------------------
+/**
+    @page GUIdeBasicTutorial2 Tutorial2 - Modal forms
+
+	In this tutorial we're playing with modal forms. 
+	You can see how easy is to work with multiple forms.
+
+	Our main form...
+ 	Form1.h
+
+	@code
+	#ifndef T_FORM1_H
+	#define T_FORM1_H
+	//-------------------------------------------------------------------
+	//  CLASS
+	//  TForm1
+	//
+	//  (C) 2004 R.Predescu
+	//-------------------------------------------------------------------
+	#ifndef T_FORM2_H
+	#include "Form2.h"
+	#endif
+
+	class TButton;
+	class TForm1 : public TForm
+	{
+	    	TForm2* Form2;
+		TButton* Close;
+		TButton* Button1;
+
+	public:  
+	    	TForm1();
+	    	virtual ~TForm1();
+		void Create(TComponent* AOwner, const TRect& Rect, bool HasCaption);
+
+	protected:
+		// Events	
+		void OnButton1Click(void);	
+	};
+
+	#endif 
+	@endcode
+	
+	Form1.cpp
+
+	@code
+	//-------------------------------------------------------------------
+	//  Form1.cpp
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+	#include "guide/vcl.h"
+	#include "guide/debug.h"
+	#include "Form1.h"
+
+	//-------------------------------------------------------------------
+	//  TForm1()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm1::TForm1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  ~TForm1()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm1::~TForm1()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  Create()
+	//  22-Dec-2003   rzv    created
+	//-------------------------------------------------------------------
+	void TForm1::Create(TComponent* AOwner, const TRect& Rect, bool HasCaption)
+	{
+		// First, call the base class Create() function
+		TForm::Create(AOwner, Rect, HasCaption);
+			
+		// Set the form's caption
+		SetCaption("Modal");
+		
+		// Create the Ok button
+		Close = new TButton;
+		Close->Create(this, TRect(GetWidth()/2 - 70, GetHeight() - 50, 60, 32));
+		Close->SetCaption("Close");
+		Close->SetModalResult(mrOk);
+		
+		Button1 = new TButton;
+		Button1->Create(this, TRect(GetWidth()/2 + 30, GetHeight() - 50, 60, 32));
+		Button1->SetCaption("Form2");
+		// This will set the OnClick() event for the button to OnButton1Click() function.
+		Button1->FOnClick = makeFunctor((TNotifyEvent*)0,*this, &TForm1::OnButton1Click);
+
+		// Create the second form
+		Form2 = new TForm2;
+		Form2->Create(this, TRect(200, 100, 200, 200), true);
+		Form2->ShowModal();
+	}
+
+	//-------------------------------------------------------------------
+	//  OnButton1Click()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	void TForm1::OnButton1Click(void)
+	{
+		// Show the second form
+		if(Form2->ShowModal() == mrOk)
+		{
+		    // Do something if the user pressed the Form2's Ok button
+	    	}
+	}
+	@endcode
+
+	Second form...
+	Form2.h
+
+	@code
+	#ifndef T_FORM2_H
+	#define T_FORM2_H
+	//-------------------------------------------------------------------
+	//  CLASS
+	//  TForm2
+	//
+	//  (C) 2004 R.Predescu
+	//-------------------------------------------------------------------
+	#ifndef T_FORM_H
+	#include "guide/form.h"
+	#endif
+
+	class TButton;
+	class TForm2 : public TForm
+	{
+		TButton* Ok;
+		TButton* Cancel;
+
+	public:  
+	    	TForm2();
+	    	virtual ~TForm2();
+		void Create(TComponent* AOwner, const TRect& Rect, bool HasCaption);
+	};
+	#endif 
+	@endcode
+
+	Form2.cpp
+
+	@code
+	//-------------------------------------------------------------------
+	//  Form2.cpp
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+	#include "guide/vcl.h"
+	#include "guide/debug.h"
+	#include "Form2.h"
+
+	//-------------------------------------------------------------------
+	//  TForm2()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm2::TForm2()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  ~TForm2()
+	//  07-June-2004   rzv    created
+	//-------------------------------------------------------------------
+	TForm2::~TForm2()
+	{
+	}
+
+	//-------------------------------------------------------------------
+	//  Create()
+	//  22-Dec-2003   rzv    created
+	//-------------------------------------------------------------------
+	void TForm2::Create(TComponent* AOwner, const TRect& Rect, bool HasCaption)
+	{
+		// First, call the base class Create() function
+		TForm::Create(AOwner, Rect, HasCaption);
+		
+		// Set the form's caption
+		SetCaption("Form2 -- Modal");
+		
+		// Create the Ok button
+		Ok = new TButton;
+		Ok->Create(this, TRect(GetWidth()/2 - 50, GetHeight() - 50, 50, 32));
+		Ok->SetCaption("Ok");
+		Ok->SetModalResult(mrOk);
+
+		// Create the Cancel button
+		Cancel = new TButton;
+		Cancel->Create(this, TRect(GetWidth()/2 + 10, GetHeight() - 50, 60, 32));
+		Cancel->SetCaption("Cancel");
+		Cancel->SetModalResult(mrCancel);
+	}
+	@endcode
+
+	Main function...
+	Main.cpp
+	
+	@code
+	//-------------------------------------------------------------------
+	//  Tutorial2
+	//  (C) 2004 Ricas -- R.Predescu
+	//-------------------------------------------------------------------
+	#include "Form1.h"
+	#include "guide/screenindependent.h"
+	#include "guide/debug.h"
+
+	int main(void)
+	{
+		// Create the screen
+		// Enter the resolution, bithdepth, fullscreen (true - false) and
+		// the skin file standard control will use to set their appearance
+		TScreenIndependent* Screen = new TScreenIndependent;
+		Screen->Create(TRect(0, 0, 800, 600), 16, false, "../res/skins/aqua.xml");
+
+		// Create the tutorial's main form.
+		TForm1* Form1 = new TForm1;
+		Form1->Create(NULL, TRect(100, 50, 600, 500), true);
+		Form1->SetMain(true);
+		Form1->ShowModal();
+		
+		// Enter application loop
+		Screen->Run();
+		
+		// Clean up things
+		delete Screen;	
+
+		return 0;	
+	}
+	@endcode
+
+	@image html basic_tutorial2.jpg Tutorial screenshot
+*/

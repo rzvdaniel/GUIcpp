@@ -1,0 +1,6 @@
+cursor		2,  2
+pen		3,  4
+help		6,  7
+hand		12, 8
+cross		15, 16
+beam		15, 15

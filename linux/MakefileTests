@@ -1,0 +1,122 @@
+#################################################################
+## This Makefile Exported by MinGW Developer Studio
+## Copyright (c) 2005 by Parinya Thipchart
+#################################################################
+
+ifneq (,$(findstring Release, $(CFG)))
+  override CFG = Release
+else
+  override CFG = Debug
+endif
+
+PROJECT = tests
+CC = "/usr/bin/g++"
+
+ifeq ($(CFG),Debug)
+  OBJ_DIR = DebugTests
+  OUTPUT_DIR = ../bin
+  TARGET = tests
+  C_INCLUDE_DIRS = -I"../inc" 
+  C_PREPROC = -D__LINUX__ 
+  CFLAGS = -pipe  -w -g0 -O0 -frtti -fexceptions 
+  LIB_DIRS = -L"../bin" -L"../lib" 
+  LIBS = -lGL -lSDL -lguide 
+  LDFLAGS = -pipe 
+endif
+
+ifeq ($(CFG),Release)
+  OBJ_DIR = Release
+  OUTPUT_DIR = ../bin
+  TARGET = tests
+  C_INCLUDE_DIRS = -I"../inc" 
+  C_PREPROC = -D__LINUX__ 
+  CFLAGS = -pipe  -Wall -g0 -O2 -frtti -fexceptions 
+  LIB_DIRS = 
+  LIBS = -lGL -lSDL -lguide 
+  LDFLAGS = -pipe -s 
+endif
+
+SRC_OBJS = \
+  $(OBJ_DIR)/Main.o	\
+  $(OBJ_DIR)/Test1.o	\
+  $(OBJ_DIR)/Test2.o	\
+  $(OBJ_DIR)/Test3.o	\
+  $(OBJ_DIR)/Test4.o	\
+  $(OBJ_DIR)/Test5.o	\
+  $(OBJ_DIR)/Test6.o	\
+  $(OBJ_DIR)/Test7.o	\
+  $(OBJ_DIR)/TestDll.o
+
+
+define build_target
+@echo Linking...
+@$(CC) -o "$(OUTPUT_DIR)/$(TARGET)" $(SRC_OBJS) $(LIB_DIRS) $(LIBS) $(LDFLAGS)
+endef
+
+define compile_source
+@echo Compiling $<
+@$(CC) $(CFLAGS) $(C_PREPROC) $(C_INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+.PHONY: print_header directories
+
+$(TARGET): print_header directories $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+cleanall:
+	@echo Deleting intermediate files for 'tests - $(CFG)'
+	-@rm -rf "$(OBJ_DIR)"
+	-@rm -rf "$(OUTPUT_DIR)/$(TARGET)"
+	-@rmdir "$(OUTPUT_DIR)"
+
+clean:
+	@echo Deleting intermediate files for 'tests - $(CFG)'
+	-@rm -rf "$(OBJ_DIR)"
+
+print_header:
+	@echo ----------Configuration: tests - Linux $(CFG)----------
+
+directories:
+	-@if [ ! -d "$(OUTPUT_DIR)" ]; then mkdir "$(OUTPUT_DIR)"; fi
+	-@if [ ! -d "$(OBJ_DIR)" ]; then mkdir "$(OBJ_DIR)"; fi
+
+$(OBJ_DIR)/Main.o: ../src/tests/Main.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test1.o: ../src/tests/Test1.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test2.o: ../src/tests/Test2.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test3.o: ../src/tests/Test3.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test4.o: ../src/tests/Test4.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test5.o: ../src/tests/Test5.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test6.o: ../src/tests/Test6.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/Test7.o: ../src/tests/Test7.cpp
+
+	$(compile_source)
+
+$(OBJ_DIR)/TestDll.o: ../src/tests/TestDll.cpp
+
+	$(compile_source)
+
+
+

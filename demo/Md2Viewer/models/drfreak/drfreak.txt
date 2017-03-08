@@ -1,0 +1,77 @@
+: D R. F R E A K E N S T E I N :
+
+author		stecki
+email		stecki@terrafusion.com
+web		http://deconstruct.terrafusion.com
+host		http://www.terrafusion.com
+
+
+: What Dr. Freakenstein is :
+
+The good dr. is a PPM (plug in player model) for use with the game Quake2.  It allows you to adapt a new personality other than the standard Q2 marine.
+
+
+: How to use Dr. Freakenstein :
+
+simply place all the files included in the zip file into a directory called "drfreak" in your Quake2/baseq2/players folder (so, the path will be Quake2/baseq2/players/drfreak).  The files are the following:
+
+tris.md2	dr. freakenstein - the model of the character
+weapon.md2	dr. freakenstein's weapon model
+*.pcx		the dr's skins/textures
+*_i.pcx		icons necessary to select the skins/textures
+weapon.pcx	the weapon's skin/texture
+drfreak.txt	you are reading it now
+*.wav		dr. freakenstein's various sounds
+w_*.md2		various weapon models for VWEP games
+
+Once in quake2, you should be able to select Dr. Freakenstein as a model in the multiplayer submenu.  if not, something has gone very, very wrong. The most common solution to this is to make sure there are only folders in the players directory, and no other files. 
+
+If you play as Dr. Freakenstein, the only other people who will see you as the Dr. will be others who have downloaded this file as well.
+
+please note that on VWEP, i have not included hand grenades, the blaster, or a grappling hook as to me they just look kinda weird.  so it will default to the weapon.md2 and isnt really missing.  just so you know.  if anyone would like to add these, be my guest.
+
+
+: Bugs :
+
+Death 2 causes Dr. Freakenstein to implode, or get sucked into himself 'till he is invisible.  the body however can still be gibbed even though there is no body present due to the way q2 handles dead body info.  so occasionally grenades will pop on an invisible Dr. Freakenstein.  this will irritate some players most likely but i love the animation and did not wanna dilute the effect.
+
+Software mode has some problems sorting the complex chair geometry, such as the wheels will sort behind the chair, causing a floating effect.  i did not notice this in GL mode at all.
+
+lastly, he will sound like he's walking on two feet instead of rolling around.  this is a limit of q2 and beyond my abilities to figure a work around.  you could do a pak file with it replacing the footstep sounds but then everyone would be rolling along.  if anyone has a fix, send me an email...
+
+The weapons won't shoot from the gun, but kinda from his head as the model is independant of the firing solutions.  again, a limit of Q2.
+
+
+: Authors Notes on this Model and Extras :
+
+Dr. Freakenstein is of course loosely translated from Dr. Finklestein.  He is an all time favorite character from an all time favorite movie.  however, i did try to maintain an originality factor and make him my own character, and i feel i succeeded.  The primary goal of this model was facial animation and a somewhat puppet like aesthetic. this is why he has puppet attached shoulders and comic proportions, as well as a more hand drawn skin rather than trying to be photorealistic, such as the wood (although i do not discourage photorealistic skins).  He is the most complex character i have built and animated, with his facial skeleton containing more joints than all of fuel4.46.  although most of this animation is very subtle and some was obtained through expressions to control some to simplify animation (this aint my paying job folks...)  I am kinda tired of your basic muscle guy with skulls characters (ATM) and wanted to try a little something different.
+
+
+i've stitched you up and made you whole
+pulled the plug within your soul
+in the end 
+of the end
+there's nothing from you i haven't stole
+
+i'm the monster of the machine
+rusted and dirty, but feeling clean
+in the zen
+of the end
+you'll realize it justified my mean
+
+
+yeah, i wrote that.  I was going to continue my naming scheme for songs, and his working name for a while was "Jurassitol."  If you know it, cool, if not, you missed out on a good one (my opinion)  But in the end, Dr. Freakenstein sounded just right, oh well.
+
+I am by no means a sound guy, so please do not judge me by dr freakenstein's sounds.  i did them fast to change the completely unfitting q2 marine voices.  i welcome anyone to make an old man sound pack for this character.
+
+
+: Disclaimer :
+
+do whatever, i don't care.  I'm not gonna get all uptight if you do stuff with it.  I would like to ask you be professional about things and if you use any of this stuff related to this model, send me an email.  I mean i spent a long time on this and would appreciate it.  i do not support necrophilia even if it does kinda turn me on.
+
+
+: Thanks :
+
+Npherno for the tools, SkinView (http://www.telefragged.com/skinview), Tim Burton
+
+Evil_Lair is pretty cool too for testing it out with me (visit his site at http://underworld.fortunecity.com/snowboard/940/).

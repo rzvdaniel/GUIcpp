@@ -1,0 +1,12 @@
+//------------------------------------------------------------------------------
+/**
+    @defgroup GUIdeTutorialsAdvanced Advanced Tutorials
+    @ingroup GUIdeTutorials 
+
+    These tutorials demonstrate more complex examples of using GUIde. 
+
+	- @ref GUIdeAdvancedTutorial1 
+	- @ref GUIdeAdvancedTutorial2
+	- @ref GUIdeAdvancedTutorial3
+	
+*/

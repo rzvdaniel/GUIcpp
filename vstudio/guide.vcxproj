@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CCFEE287-8551-48C8-953D-E6EB9A9283C8}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25420.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\../bin\</OutDir>
+    <IntDir>.\ReleaseGuide\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\../bin\</OutDir>
+    <IntDir>.\DebugGuide\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\../bin/guide.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>../inc;../inc/sdl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GUIDE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\ReleaseGuide/guide.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\ReleaseGuide/</AssemblerListingLocation>
+      <ObjectFileName>.\ReleaseGuide/</ObjectFileName>
+      <ProgramDataBaseFileName>.\ReleaseGuide/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0418</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>SDL.lib;SDLmain.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\../bin/guide.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../lib;../bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ProgramDatabaseFile>.\../bin/guide.pdb</ProgramDatabaseFile>
+      <ImportLibrary>.\../bin/guide.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\../bin/guide.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../inc;../inc/sdl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GUIDE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\DebugGuide/guide.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\DebugGuide/</AssemblerListingLocation>
+      <ObjectFileName>.\DebugGuide/</ObjectFileName>
+      <ProgramDataBaseFileName>.\DebugGuide/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0418</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>SDL.lib;SDLmain.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\../bin/guide.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrt;libc;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\../bin/guide.pdb</ProgramDatabaseFile>
+      <ImportLibrary>.\../bin/guide.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\guide\bitbtn.cpp" />
+    <ClCompile Include="..\src\guide\bmp.cpp" />
+    <ClCompile Include="..\src\guide\brush.cpp" />
+    <ClCompile Include="..\src\guide\button.cpp" />
+    <ClCompile Include="..\src\guide\callback.cpp" />
+    <ClCompile Include="..\src\guide\canvas.cpp" />
+    <ClCompile Include="..\src\guide\captionbar.cpp" />
+    <ClCompile Include="..\src\guide\checkbtn.cpp" />
+    <ClCompile Include="..\src\guide\collection.cpp" />
+    <ClCompile Include="..\src\guide\combobox.cpp" />
+    <ClCompile Include="..\src\guide\component.cpp" />
+    <ClCompile Include="..\src\guide\control.cpp" />
+    <ClCompile Include="..\src\guide\custombutton.cpp" />
+    <ClCompile Include="..\src\guide\customedit.cpp" />
+    <ClCompile Include="..\src\guide\customlistbox.cpp" />
+    <ClCompile Include="..\src\guide\debug.cpp" />
+    <ClCompile Include="..\src\guide\directorylistbox.cpp" />
+    <ClCompile Include="..\src\guide\dll.cpp" />
+    <ClCompile Include="..\src\guide\drivecombobox.cpp" />
+    <ClCompile Include="..\src\guide\edit.cpp" />
+    <ClCompile Include="..\src\guide\entry.cpp" />
+    <ClCompile Include="..\src\guide\filelistbox.cpp" />
+    <ClCompile Include="..\src\guide\fileserver.cpp" />
+    <ClCompile Include="..\src\guide\filtercombobox.cpp" />
+    <ClCompile Include="..\src\guide\font.cpp" />
+    <ClCompile Include="..\src\guide\form.cpp" />
+    <ClCompile Include="..\src\guide\gfxserver.cpp" />
+    <ClCompile Include="..\src\guide\glserver.cpp" />
+    <ClCompile Include="..\src\guide\grid.cpp" />
+    <ClCompile Include="..\src\guide\gridcell.cpp" />
+    <ClCompile Include="..\src\guide\gridrow.cpp" />
+    <ClCompile Include="..\src\guide\group.cpp" />
+    <ClCompile Include="..\src\guide\groupbox.cpp" />
+    <ClCompile Include="..\src\guide\image.cpp" />
+    <ClCompile Include="..\src\guide\label.cpp" />
+    <ClCompile Include="..\src\guide\listbox.cpp" />
+    <ClCompile Include="..\src\guide\mathlib.cpp" />
+    <ClCompile Include="..\src\guide\menu.cpp" />
+    <ClCompile Include="..\src\guide\menumain.cpp" />
+    <ClCompile Include="..\src\guide\menupopup.cpp" />
+    <ClCompile Include="..\src\guide\mousecursor.cpp" />
+    <ClCompile Include="..\src\guide\object.cpp" />
+    <ClCompile Include="..\src\guide\opendialog.cpp" />
+    <ClCompile Include="..\src\guide\panel.cpp" />
+    <ClCompile Include="..\src\guide\pen.cpp" />
+    <ClCompile Include="..\src\guide\picture.cpp" />
+    <ClCompile Include="..\src\guide\radiobtn.cpp" />
+    <ClCompile Include="..\src\guide\screen.cpp" />
+    <ClCompile Include="..\src\guide\screenembeded.cpp" />
+    <ClCompile Include="..\src\guide\screenindependent.cpp" />
+    <ClCompile Include="..\src\guide\scrollbar.cpp" />
+    <ClCompile Include="..\src\guide\scrollwinctrl.cpp" />
+    <ClCompile Include="..\src\guide\sdlkey.cpp" />
+    <ClCompile Include="..\src\guide\shadow.cpp" />
+    <ClCompile Include="..\src\guide\skin.cpp" />
+    <ClCompile Include="..\src\guide\string.cpp" />
+    <ClCompile Include="..\src\guide\strings.cpp" />
+    <ClCompile Include="..\src\guide\texture.cpp" />
+    <ClCompile Include="..\src\guide\tga.cpp" />
+    <ClCompile Include="..\src\guide\tinystr.cpp" />
+    <ClCompile Include="..\src\guide\tinyxml.cpp" />
+    <ClCompile Include="..\src\guide\tinyxmlerror.cpp" />
+    <ClCompile Include="..\src\guide\tinyxmlparser.cpp" />
+    <ClCompile Include="..\src\guide\wincontrol.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\guide\bitbtn.h" />
+    <ClInclude Include="..\inc\guide\bmp.h" />
+    <ClInclude Include="..\inc\guide\brush.h" />
+    <ClInclude Include="..\inc\guide\button.h" />
+    <ClInclude Include="..\inc\guide\callback.h" />
+    <ClInclude Include="..\inc\guide\canvas.h" />
+    <ClInclude Include="..\inc\guide\captionbar.h" />
+    <ClInclude Include="..\inc\guide\checkbtn.h" />
+    <ClInclude Include="..\inc\guide\collection.h" />
+    <ClInclude Include="..\inc\guide\combobox.h" />
+    <ClInclude Include="..\inc\guide\component.h" />
+    <ClInclude Include="..\inc\guide\control.h" />
+    <ClInclude Include="..\inc\guide\custombutton.h" />
+    <ClInclude Include="..\inc\guide\customedit.h" />
+    <ClInclude Include="..\inc\guide\customlistbox.h" />
+    <ClInclude Include="..\inc\guide\debug.h" />
+    <ClInclude Include="..\inc\guide\defines.h" />
+    <ClInclude Include="..\inc\guide\directorylistbox.h" />
+    <ClInclude Include="..\inc\guide\dll.h" />
+    <ClInclude Include="..\inc\guide\drivecombobox.h" />
+    <ClInclude Include="..\inc\guide\edit.h" />
+    <ClInclude Include="..\inc\guide\entry.h" />
+    <ClInclude Include="..\inc\guide\filelistbox.h" />
+    <ClInclude Include="..\inc\guide\fileserver.h" />
+    <ClInclude Include="..\inc\guide\filtercombobox.h" />
+    <ClInclude Include="..\inc\guide\font.h" />
+    <ClInclude Include="..\inc\guide\form.h" />
+    <ClInclude Include="..\inc\guide\gfxserver.h" />
+    <ClInclude Include="..\inc\guide\glserver.h" />
+    <ClInclude Include="..\inc\guide\graphics.h" />
+    <ClInclude Include="..\inc\guide\grid.h" />
+    <ClInclude Include="..\inc\guide\gridcell.h" />
+    <ClInclude Include="..\inc\guide\gridrow.h" />
+    <ClInclude Include="..\inc\guide\group.h" />
+    <ClInclude Include="..\inc\guide\groupbox.h" />
+    <ClInclude Include="..\inc\guide\image.h" />
+    <ClInclude Include="..\inc\guide\label.h" />
+    <ClInclude Include="..\inc\guide\listbox.h" />
+    <ClInclude Include="..\inc\guide\mathlib.h" />
+    <ClInclude Include="..\inc\guide\menu.h" />
+    <ClInclude Include="..\inc\guide\menumain.h" />
+    <ClInclude Include="..\inc\guide\menupopup.h" />
+    <ClInclude Include="..\inc\guide\messages.h" />
+    <ClInclude Include="..\inc\guide\mousecursor.h" />
+    <ClInclude Include="..\inc\guide\ndefdllclass.h" />
+    <ClInclude Include="..\inc\guide\nsystem.h" />
+    <ClInclude Include="..\inc\guide\object.h" />
+    <ClInclude Include="..\inc\guide\opendialog.h" />
+    <ClInclude Include="..\inc\guide\osincludes.h" />
+    <ClInclude Include="..\inc\guide\panel.h" />
+    <ClInclude Include="..\inc\guide\pen.h" />
+    <ClInclude Include="..\inc\guide\picture.h" />
+    <ClInclude Include="..\inc\guide\radiobtn.h" />
+    <ClInclude Include="..\inc\guide\screen.h" />
+    <ClInclude Include="..\inc\guide\screenembeded.h" />
+    <ClInclude Include="..\inc\guide\screenindependent.h" />
+    <ClInclude Include="..\inc\guide\scrollbar.h" />
+    <ClInclude Include="..\inc\guide\scrollwinctrl.h" />
+    <ClInclude Include="..\inc\guide\shadow.h" />
+    <ClInclude Include="..\inc\guide\skin.h" />
+    <ClInclude Include="..\inc\guide\string.h" />
+    <ClInclude Include="..\inc\guide\strings.h" />
+    <ClInclude Include="..\inc\guide\texture.h" />
+    <ClInclude Include="..\inc\guide\tga.h" />
+    <ClInclude Include="..\inc\guide\tinystr.h" />
+    <ClInclude Include="..\inc\guide\tinyxml.h" />
+    <ClInclude Include="..\inc\guide\typedef.h" />
+    <ClInclude Include="..\inc\guide\vcl.h" />
+    <ClInclude Include="..\inc\guide\wincontrol.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

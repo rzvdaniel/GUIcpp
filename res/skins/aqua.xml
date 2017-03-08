@@ -1,0 +1,619 @@
+<?xml version="1.0" standalone=yes>
+
+<!-- Aqua skin -->
+
+<TSkin
+TexturesPath="../res/skins/aqua/images/"
+FontsPath="../res/skins/aqua/fonts/"
+CursorsPath="../res/skins/aqua/cursors/"
+SmallIconsPath="../res/skins/aqua/iconssmall/"
+MediumIconsPath="../res/skins/aqua/iconsmedium/"
+LargeIconsPath="../res/skins/aqua/iconslarge/"
+Resources="../res/skins/aquares.xml">
+
+<DefaultCursor Name="cursor.tga"/>
+<DefaultFont Name="LucidaGrande.font" Size="12"/>
+
+<!-- Control definitions -->
+
+
+<!-- Basic button -->
+
+<TButton Color="0xEEFFFFFF" CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080" Height="32">
+
+<!-- Button is active -->
+<TGrid Name="Active">
+<TRow Align="client" Height="32">
+<TCell Width="16" Align="left" Texture="button0"/>
+<TCell Width="16" Align="client" Texture="button1"/>
+<TCell Width="16" Align="right" Texture="button2"/>
+</TRow>
+</TGrid>
+
+<!-- Button is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="32" Align="client">
+<TCell Width="16" Align="left" Texture="button3"/>
+<TCell Width="16" Align="client" Texture="button4"/>
+<TCell Width="16" Align="right" Texture="button5"/>
+</TRow>
+</TGrid>
+
+<!-- Button is pressed -->
+<TGrid Name="Pressed">
+<TRow Height="32" Align="client" >
+<TCell Width="16" Align="left" Texture="button6"/>
+<TCell Width="16" Align="client" Texture="button7"/>
+<TCell Width="16" Align="right" Texture="button8"/>
+</TRow>
+</TGrid>
+
+<!-- Mouse cursor is over the button -->
+<TGrid Name="MouseOver">
+<TRow Height="32" Align="client">
+<TCell Width="16" Align="left" Texture="button0"/>
+<TCell Width="16" Align="client" Texture="button1"/>
+<TCell Width="16" Align="right" Texture="button2"/>
+</TRow>
+</TGrid>
+
+<!-- Button is disabled -->
+<TGrid Name="Disabled">
+<TRow Height="32" Align="client">
+<TCell Width="16" Align="left" Texture="button9"/>
+<TCell Width="16" Align="client" Texture="button10"/>
+<TCell Width="16" Align="right" Texture="button11"/>
+</TRow>
+</TGrid>
+
+</TButton>
+
+
+<!-- Basic captionbar -->
+
+<TCaptionBar CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080" Height="23">
+
+<!-- Captionbar is active -->
+<TGrid Name="Active">
+<TRow Height="23" Align="client">
+<TCell Width="16" Align="left" Texture="captionbar0"/>
+<TCell Width="16" Align="client" Texture="captionbar1"/>
+<TCell Width="16" Align="right" Texture="captionbar2"/>
+</TRow>
+</TGrid>
+
+<!-- Captionbar is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="23" Align="client">
+<TCell Width="16" Align="left" Texture="captionbar3"/>
+<TCell Width="16" Align="client" Texture="captionbar4"/>
+<TCell Width="16" Align="right" Texture="captionbar5"/>
+</TRow>
+</TGrid>
+
+</TCaptionBar>
+
+
+<!-- Basic check button -->
+
+<TCheckBtn CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080">
+
+<!-- Button is unchecked -->
+<TGrid Name="Unchecked">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="check_button0"/>
+</TRow>
+</TGrid>
+
+<!-- Button is checked -->
+<TGrid Name="Checked">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="check_button1"/>
+</TRow>
+</TGrid>
+
+<!-- Button is unchecked and also disabled -->
+<TGrid Name="UncheckedDisabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="check_button2"/>
+</TRow>
+</TGrid>
+
+<!-- Button is checked and also disabled -->
+<TGrid Name="CheckedDisabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="check_button3"/>
+</TRow>
+</TGrid>
+
+</TCheckBtn>
+
+
+
+<!-- Basic radio button -->
+
+<TRadioBtn CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080">
+
+<!-- Button is unchecked -->
+<TGrid Name="Unchecked">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="radio_button0"/>
+</TRow>
+</TGrid>
+
+<!-- Button is checked -->
+<TGrid Name="Checked">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="radio_button1"/>
+</TRow>
+</TGrid>
+
+<!-- Button is unchecked and also disabled -->
+<TGrid Name="UncheckedDisabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="radio_button2"/>
+</TRow>
+</TGrid>
+
+<!-- Button is checked and also disabled -->
+<TGrid Name="CheckedDisabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="radio_button3"/>
+</TRow>
+</TGrid>
+
+</TRadioBtn>
+
+
+
+<!-- Basic bitmapped button -->
+
+<TBitBtn Color="0xEEFFFFFF" CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080" 
+         CaptionOffset="0" GlyphSpacing="5" Height="32">
+
+  <!-- Button is active -->
+  <TGrid Name="Active">
+    <TRow Align="client" Height="32">
+      <TCell Width="16" Align="left" Texture="bitbtn0"/>
+      <TCell Width="16" Align="client" Texture="bitbtn1"/>
+      <TCell Width="16" Align="right" Texture="bitbtn2"/>
+    </TRow>
+  </TGrid>
+
+  <!-- Button is inactive -->
+  <TGrid Name="Inactive">
+    <TRow Height="32" Align="client">
+      <TCell Width="16" Align="left" Texture="bitbtn3"/>
+      <TCell Width="16" Align="client" Texture="bitbtn4"/>
+      <TCell Width="16" Align="right" Texture="bitbtn5"/>
+    </TRow>
+  </TGrid>
+
+  <!-- Button is pressed -->
+  <TGrid Name="Pressed">
+    <TRow Height="32" Align="client" >
+      <TCell Width="16" Align="left" Texture="bitbtn6"/>
+      <TCell Width="16" Align="client" Texture="bitbtn7"/>
+      <TCell Width="16" Align="right" Texture="bitbtn8"/>
+    </TRow>
+  </TGrid>
+
+  <!-- Mouse cursor is over the button -->
+  <TGrid Name="MouseOver">
+    <TRow Height="32" Align="client">
+      <TCell Width="16" Align="left" Texture="bitbtn0"/>
+      <TCell Width="16" Align="client" Texture="bitbtn1"/>
+      <TCell Width="16" Align="right" Texture="bitbtn2"/>
+    </TRow>
+  </TGrid>
+
+  <!-- Button is disabled -->
+  <TGrid Name="Disabled">
+    <TRow Height="32" Align="client">
+      <TCell Width="16" Align="left" Texture="bitbtn9"/>
+      <TCell Width="16" Align="client" Texture="bitbtn10"/>
+      <TCell Width="16" Align="right" Texture="bitbtn11"/>
+    </TRow>
+  </TGrid>
+
+</TBitBtn>
+
+
+<!-- Basic edit control-->
+
+<TEdit Height="24" MouseCursor="beam.tga" CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080" MarginsText="10,5,10,5">
+
+<!-- Edit has not focus -->
+<TGrid Name="Unfocused">
+<TRow Height="24" Align="client">
+<TCell Width="16" Align="left" Texture="edit0"/>
+<TCell Width="16" Align="client" Texture="edit1"/>
+<TCell Width="16" Align="right" Texture="edit2"/>
+</TRow>
+</TGrid>
+
+<!-- Edit has focus -->
+<TGrid Name="Focused">
+<TRow Height="24" Align="client">
+<TCell Width="16" Align="left" Texture="edit3"/>
+<TCell Width="16" Align="client" Texture="edit4"/>
+<TCell Width="16" Align="right" Texture="edit5"/>
+</TRow>
+</TGrid>
+
+</TEdit>
+
+
+<!-- Scroll button min horizontal -->
+
+<TScrollButtonMinHorz Width="16" Height="16">
+
+<!-- Button is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button0"/>
+</TRow>
+</TGrid>
+
+<!-- Button is pressed -->
+<TGrid Name="Pressed">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button2"/>
+</TRow>
+</TGrid>
+
+<!-- Button is disabled -->
+<TGrid Name="Disabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button3"/>
+</TRow>
+</TGrid>
+
+</TScrollButtonMinHorz>
+
+
+<!-- Scroll button max horizontal -->
+
+<TScrollButtonMaxHorz Width="16" Height="16">
+
+<!-- Button is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button4"/>
+</TRow>
+</TGrid>
+
+<!-- Button is pressed -->
+<TGrid Name="Pressed">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button6"/>
+</TRow>
+</TGrid>
+
+<!-- Button is disabled -->
+<TGrid Name="Disabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button7"/>
+</TRow>
+</TGrid>
+
+</TScrollButtonMaxHorz>
+
+
+<!-- Scroll button max vertical -->
+
+<TScrollButtonMaxVert Width="16" Height="16">
+
+<!-- Button is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button12"/>
+</TRow>
+</TGrid>
+
+<!-- Button is pressed -->
+<TGrid Name="Pressed">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button14"/>
+</TRow>
+</TGrid>
+
+<!-- Button is disabled -->
+<TGrid Name="Disabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button15"/>
+</TRow>
+</TGrid>
+
+</TScrollButtonMaxVert>
+
+
+<!-- Scroll button min vertical -->
+
+<TScrollButtonMinVert Width="16" Height="16">
+
+<!-- Button is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button8"/>
+</TRow>
+</TGrid>
+
+<!-- Button is pressed -->
+<TGrid Name="Pressed">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button10"/>
+</TRow>
+</TGrid>
+
+<!-- Button is disabled -->
+<TGrid Name="Disabled">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar_button11"/>
+</TRow>
+</TGrid>
+
+</TScrollButtonMinVert>
+
+
+<!-- Scroll thumb horizontal -->
+
+<TScrollThumbHorz MinSize="48">
+
+<TGrid Name="Horizontal">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="left" Texture="scrollbar_thumb0"/>
+<TCell Width="16" Align="client" Texture="scrollbar_thumb1"/>
+<TCell Width="16" Align="right" Texture="scrollbar_thumb2"/>
+</TRow>
+</TGrid>
+
+</TScrollThumbHorz>
+
+
+<!-- Scroll thumb vertical -->
+
+<TScrollThumbVert MinSize="48">
+
+<TGrid Name="Vertical">
+<TRow Align="top" Height="16">
+<TCell Width="16" Align="client" Texture="scrollbar_thumb6"/>
+</TRow>
+<TRow Align="client" Height="16">
+<TCell Width="16" Align="client" Texture="scrollbar_thumb7"/>
+</TRow>
+<TRow Align="bottom" Height="16">
+<TCell Width="16" Align="client" Texture="scrollbar_thumb8"/>
+</TRow>
+</TGrid>
+
+</TScrollThumbVert>
+
+
+<TScrollBar>
+
+<!-- Horizontal -->
+<TGrid Name="Horizontal">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar0"/>
+</TRow>
+</TGrid>
+
+<!-- Vertical -->
+<TGrid Name="Vertical">
+<TRow Height="16" Align="client">
+<TCell Width="16" Align="client" Texture="scrollbar1"/>
+</TRow>
+</TGrid>
+
+</TScrollBar>
+
+
+<!-- List box -->
+
+<TListBox Margins="1,1,1,1" MarginsText="6,4,4,4" SelectionColor="0xFFDDDDDD">
+
+<!-- List box is active -->
+<TGrid Name="Active">
+<TRow Height="8" Align="top">
+<TCell Width="8" Align="left" Texture="listbox_active0"/>
+<TCell Width="8" Align="client" Texture="listbox_active1"/>
+<TCell Width="8" Align="right" Texture="listbox_active2"/>
+</TRow>
+<TRow Height="8" Align="client">
+<TCell Width="8" Align="left" Texture="listbox_active3"/>
+<TCell Width="8" Align="client" Texture="listbox_active4"/>
+<TCell Width="8" Align="right" Texture="listbox_active5"/>
+</TRow>
+<TRow Height="8" Align="bottom">
+<TCell Width="8" Align="left" Texture="listbox_active6"/>
+<TCell Width="8" Align="client" Texture="listbox_active7"/>
+<TCell Width="8" Align="right" Texture="listbox_active8"/>
+</TRow>
+</TGrid>
+
+<!-- List box is inactive -->
+<TGrid Name="Inactive">
+<TRow Height="8" Align="top">
+<TCell Width="8" Align="left" Texture="listbox_inactive0"/>
+<TCell Width="8" Align="client" Texture="listbox_inactive1"/>
+<TCell Width="8" Align="right" Texture="listbox_inactive2"/>
+</TRow>
+<TRow Height="8" Align="client">
+<TCell Width="8" Align="left" Texture="listbox_inactive3"/>
+<TCell Width="8" Align="client" Texture="listbox_inactive4"/>
+<TCell Width="8" Align="right" Texture="listbox_inactive5"/>
+</TRow>
+<TRow Height="8" Align="bottom">
+<TCell Width="8" Align="left" Texture="listbox_inactive6"/>
+<TCell Width="8" Align="client" Texture="listbox_inactive7"/>
+<TCell Width="8" Align="right" Texture="listbox_inactive8"/>
+</TRow>
+</TGrid>
+
+</TListBox>
+
+  
+  <!-- Basic combo box -->
+
+  <TComboBox MouseCursor="beam.tga" Height="21" MarginsText="6,5,10,5">
+
+    <!-- Combo box has not focus -->
+    <TGrid Name="Unfocused">
+      <TRow Height="21" Align="client">
+        <TCell Width="16" Align="left" Texture="combobox0"/>
+        <TCell Width="16" Align="client" Texture="combobox1"/>
+        <TCell Width="16" Align="right" Texture="combobox2"/>
+      </TRow>
+    </TGrid>
+
+    <!-- Combo box has focus -->
+    <TGrid Name="Focused">
+      <TRow Height="21" Align="client">
+        <TCell Width="16" Align="left" Texture="combobox3"/>
+        <TCell Width="16" Align="client" Texture="combobox4"/>
+        <TCell Width="16" Align="right" Texture="combobox5"/>
+      </TRow>
+    </TGrid>
+
+  </TComboBox>
+
+  <!-- Combo list box -->
+
+<TComboListBox MarginsText="6,2,2,2">
+
+<!-- List box is active -->
+<TGrid Name="Normal">
+<TRow Height="8" Align="top">
+<TCell Width="8" Align="left" Texture="listbox_active0"/>
+<TCell Width="8" Align="client" Texture="listbox_active1"/>
+<TCell Width="8" Align="right" Texture="listbox_active2"/>
+</TRow>
+<TRow Height="8" Align="client">
+<TCell Width="8" Align="left" Texture="listbox_active3"/>
+<TCell Width="8" Align="client" Texture="listbox_active4"/>
+<TCell Width="8" Align="right" Texture="listbox_active5"/>
+</TRow>
+<TRow Height="8" Align="bottom">
+<TCell Width="8" Align="left" Texture="listbox_active6"/>
+<TCell Width="8" Align="client" Texture="listbox_active7"/>
+<TCell Width="8" Align="right" Texture="listbox_active8"/>
+</TRow>
+</TGrid>
+
+</TComboListBox>
+
+  <!-- Combo box button -->
+
+  <TComboBoxButton Color="0xEEFFFFFF" Width="20">
+
+    <!-- Combo box button is active -->
+    <TGrid Name="Active">
+      <TRow Height="21" Align="client">
+        <TCell Width="20" Align="left" Texture="comboboxbutton0"/>
+      </TRow>
+    </TGrid>
+
+    <!-- Combo box button is inactive -->
+    <TGrid Name="Inactive">
+      <TRow Height="21" Align="client">
+        <TCell Width="20" Align="left" Texture="comboboxbutton1"/>
+      </TRow>
+    </TGrid>
+
+    <!-- Combo box button is pressed -->
+    <TGrid Name="Pressed">
+      <TRow Height="21" Align="client">
+        <TCell Width="20" Align="left" Texture="comboboxbutton1"/>
+      </TRow>
+    </TGrid>
+
+    <!-- Mouse is over -->
+    <TGrid Name="MouseOver">
+      <TRow Height="21" Align="client">
+        <TCell Width="20" Align="left" Texture="comboboxbutton0"/>
+      </TRow>
+    </TGrid>
+
+    <!-- Combo box button is disabled -->
+    <TGrid Name="Disabled">
+      <TRow Height="21" Align="client">
+        <TCell Width="20" Align="left" Texture="comboboxbutton2"/>
+      </TRow>
+    </TGrid>
+
+  </TComboBoxButton>
+  
+<!-- Main menu -->
+
+  <TMainMenu Height="22">
+
+<!-- Menu grid -->
+<TGrid Name="Normal" Height="22">
+<TRow Height="22" Align="client">
+  <TCell Width="26" Align="left" Texture="menu_main0"/>
+  <TCell Width="26" Align="client" Texture="menu_main1"/>
+  <TCell Width="26" Align="right" Texture="menu_main2"/>
+</TRow>
+</TGrid>
+
+</TMainMenu>
+
+
+<!-- Main menu item -->
+
+<TMainMenuItem Height="22" ExtraWidth="22" ExtraHeight="10" 
+CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080">
+
+<!-- Menu item is selected -->
+<TGrid Name="Selected">
+<TRow Height="22" Align="client">
+<TCell Width="26" Align="client" Texture="menu_item_main1"/>
+</TRow>
+</TGrid>
+
+</TMainMenuItem>
+
+<!-- Popup menu item -->
+
+<TPopupMenuItem ExtraWidth="20" ExtraHeight="5"
+CaptionColorEnabled="0x00000000" CaptionColorDisabled="0xFF808080">
+
+<!-- Menu item is unselected -->
+<TGrid Name="Unselected">
+<TRow Height="20" Align="client">
+<TCell Width="16" Align="client" TextureRepeat="vertical" Texture="menu_item_popup0"/>
+</TRow>
+</TGrid>
+
+<!-- Menu item is selected -->
+<TGrid Name="Selected">
+<TRow Height="20" Align="client">
+<TCell Width="16" Align="client" Texture="menu_item_popup1"/>
+</TRow>
+</TGrid>
+
+</TPopupMenuItem>
+
+
+<!-- Popup menu -->
+
+<TPopupMenu CastShadows="true">
+</TPopupMenu>
+
+
+<TForm Margins="1,1,1,1" BorderColor="0xFFAAAAAA" BorderWidth="1">
+
+<TGrid Name="Normal">
+<TRow Height="32" Align="client">
+<TCell Width="32" Align="client" TextureRepeat="vertical" Texture="menu_item1"/>
+</TRow>
+</TGrid>
+
+</TForm>
+
+
+</TSkin>
+
+
+

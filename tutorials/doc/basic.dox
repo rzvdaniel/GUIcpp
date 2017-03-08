@@ -1,0 +1,14 @@
+//------------------------------------------------------------------------------
+/**
+    @defgroup GUIdeTutorialsBasic Basic Tutorials
+    @ingroup GUIdeTutorials 
+
+    These tutorials demonstrate the simplest examples of using GUIde. 
+
+	- @ref GUIdeBasicTutorial1 
+	- @ref GUIdeBasicTutorial2
+	- @ref GUIdeBasicTutorial3
+	- @ref GUIdeBasicTutorial4
+	- @ref GUIdeBasicTutorial5
+	- @ref GUIdeBasicTutorial6
+*/
