@@ -1,5 +1,5 @@
 # GUIcpp
-An OpenGL user interface written in C++ some time ago. It is not maintained anymore and it's here for reference. However, is has a twin brother (GUIsharp - https://github.com/rzvdaniel/GUIsharp) that is currently under active development. The difference between the two is that the first one was written in C++ and has it's own templating system while the last one is written in C# and takes advantage of the AngleSharp HTML parser to generate the UI element.
+An OpenGL user interface written in C++ some time ago. It is not maintained anymore and it's here for reference. However, is has a twin brother (GUIsharp - https://github.com/rzvdaniel/GUIsharp) that is currently under development.
 
 ## Screenshots
 ![Screenshot 01](/screenshots/01.jpeg?raw=true "Aqua look 01")
