@@ -32,7 +32,8 @@
 class N_PUBLIC TGlServer : public TGfxServer
 {
     long ClearBufferBit;
-    
+	SDL_Window* window;
+
 public:
 	TGlServer();
 	virtual ~TGlServer();

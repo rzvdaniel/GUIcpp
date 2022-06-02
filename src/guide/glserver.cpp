@@ -3,6 +3,7 @@
 //  glserver.cpp
 //  (C) 2004 R.Predescu
 //-------------------------------------------------------------------
+#include "SDL.h"
 #include "guide/glserver.h"
 #include "guide/screen.h"
 #include "guide/debug.h"
@@ -64,8 +65,8 @@ bool TGlServer::HandleEvent(SDL_Event *event)
 			if(event->key.keysym.sym >= 32 && event->key.keysym.sym <= 126)
 			{	
 				msg.Msg	= CM_CHAR;
-				if ((event->key.keysym.unicode & 0xFF80) == 0)
-					msg.WParam = event->key.keysym.unicode & 0x7F;
+				/*if ((event->key.keysym.unicode & 0xFF80) == 0)
+					msg.WParam = event->key.keysym.unicode & 0x7F;*/
 			}
 			else
 			{
@@ -98,10 +99,10 @@ void TGlServer::Loop(void)
 	// Paint everything
 	Begin();
 	TScreen::Singleton->CMPaint();
-	End();	
+	End();
 
 	// Swap OpenGL buffers
-	SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(window);
 
 	// Check for error conditions
 	GLenum gl_error = glGetError();
@@ -109,14 +110,14 @@ void TGlServer::Loop(void)
 		t_printf("testgl: OpenGL error: %d\n", gl_error);
 
 	// Print SDL errors
-	char* sdl_error = SDL_GetError();
+	const char* sdl_error = SDL_GetError();
 	if(sdl_error[0] != '\0') 
 	{
 		t_printf("testgl: SDL error '%s'\n", sdl_error);
 		SDL_ClearError();
 	}
 
-	// Check if there is s a pending event
+	// Check if there is a pending event
 	SDL_Event event;
 	while(SDL_PollEvent(&event)) 
 	{
@@ -173,31 +174,25 @@ bool TGlServer::OpenDisplay(void)
     SDL_GL_SetAttribute( SDL_GL_ACCUM_BLUE_SIZE, 0); 
     SDL_GL_SetAttribute( SDL_GL_ACCUM_ALPHA_SIZE, 0); 
 
-	unsigned int VideoMode;
-	if(Fullscreen == true)
-		VideoMode = SDL_OPENGL | SDL_FULLSCREEN;
-	else
-		VideoMode = SDL_OPENGL;
+	window = SDL_CreateWindow("GUIde",
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		Width, Height,
+		SDL_WINDOW_OPENGL);
 
-	// Set video mode
-	if(SDL_SetVideoMode( Width, Height, BitsPerPixel, VideoMode ) == NULL) 
+	SDL_GLContext context = SDL_GL_CreateContext(window);
+
+	if (Fullscreen == true)
 	{
-		t_printf("Could not set GL mode: %s\n", SDL_GetError());
-		SDL_Quit();
-		return false;
+		// Set video mode
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP);
 	}
 	
-	// Set the window manager title bar
-	SDL_WM_SetCaption("GUIde", "guide");
-
 	// Hide mouse cursor because GUIde will render its own one
 	SDL_ShowCursor(0);
 
-	// Enable unicode characters
-	SDL_EnableUNICODE(true);
-
 	// Enable keyboard repeat
-	SDL_EnableKeyRepeat(500, 30);
+	//SDL_EnableKeyRepeat(500, 30);
 
     return true;
 }
@@ -211,7 +206,7 @@ void TGlServer::CloseDisplay(void)
 	// Show mouse cursor
 	SDL_ShowCursor(1);
 	
-	// Destroy our GL context, etc
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
 
