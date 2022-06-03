@@ -13,11 +13,9 @@
 #define N_DEFINES TDll
 #include "guide/ndefdllclass.h"
 
-#include <string>
-
-//-------------------------------------------------------------------
-
-typedef stl::string TString;
+#ifndef T_STRINGCI_H
+#include "string.h"
+#endif
 
 //-------------------------------------------------------------------
 

@@ -18,12 +18,14 @@
 #include "guide/collection.h"
 #endif
 
+#ifndef T_STRINGCI_H
+#include "string.h"
+#endif
+
 #include <list>
-#include <string>
 
 //-------------------------------------------------------------------
 
-typedef stl::string TString;
 typedef stl::list<TString> TStringList;
 
 N_EXPORT void split(const TString& text, const TString& separators, TStringList& words);

@@ -14,7 +14,10 @@
 #include "guide/object.h"
 #endif
 
-#include <string>
+#ifndef T_STRINGCI_H
+#include "string.h"
+#endif
+
 #include <list>
 
 //-------------------------------------------------------------------
@@ -22,7 +25,6 @@
 class TGroup;
 class TComponent;
 
-typedef stl::string TString;
 typedef stl::list<TComponent*> TComponentsList;
 
 //-------------------------------------------------------------------

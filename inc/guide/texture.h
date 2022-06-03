@@ -23,11 +23,9 @@
 #include "guide/picture.h"
 #endif
 
-#include <string>
-
-//-------------------------------------------------------------------
-
-typedef stl::string TString;
+#ifndef T_STRINGCI_H
+#include "string.h"
+#endif
 
 //-------------------------------------------------------------------
 class N_PUBLIC TTexture : public TObject

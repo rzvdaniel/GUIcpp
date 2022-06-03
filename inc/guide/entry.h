@@ -10,6 +10,10 @@
 #define N_DEFINES TEntry
 #include "guide/ndefdllclass.h"
 
+#ifndef T_STRINGCI_H
+#include "string.h"
+#endif
+
 #ifdef __WIN32__
     #include <io.h>
     #include <direct.h>
@@ -32,12 +36,10 @@
 #   define mkdir(x,y)  _mkdir(x)
 #endif
 
-#include <string>
 #include <set>
 
 enum TEntryAttributes { eaNormal, eaReadOnly, eaHidden, eaSystem, eaSubdir, eaArchive };
 
-typedef stl::string TString;
 typedef stl::set< TEntryAttributes, stl::less<TEntryAttributes> > TEntryAttrib;
 
 //-------------------------------------------------------------------

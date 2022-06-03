@@ -37,14 +37,16 @@
 #include "tinyxml.h"
 #endif
 
-#include <string>
+#ifndef T_STRINGCI_H
+#include "string.h"
+#endif
+
 #include <map>
 
 enum TIconKind { iconSmall, iconMedium, iconLarge };
 
 //-------------------------------------------------------------------
 
-typedef stl::string TString;
 typedef stl::map<TString, TTexture*> TTexturesList;
 typedef stl::map<TString, TTexture*> TIconsListSmall;
 typedef stl::map<TString, TTexture*> TIconsListMedium;
